@@ -1,6 +1,7 @@
 .DS_Store
 /myvenv
 /sam2/checkpoints/*.pt
+/models/shape_predictor_68_face_landmarks.dat
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
