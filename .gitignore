@@ -1,6 +1,6 @@
 .DS_Store
 /myvenv
-/sam2/checkpoints
+/sam2/checkpoints/*.pt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
