@@ -36,7 +36,7 @@ predictor = build_sam2_video_predictor(model_cfg, sam2_checkpoint, device=device
 
 #load frames
 # `video_dir` a directory of JPEG frames with filenames like `<frame_index>.jpg`
-video_dir = "/Users/rtous/dev/susan/Video1_GE/Video1_GE_part0"
+video_dir = "data/scenes/test/imagesFull"
 # scan all the JPEG frame names in this directory
 frame_names = [
     p for p in os.listdir(video_dir)

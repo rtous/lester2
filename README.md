@@ -42,4 +42,5 @@ by:
 
 ## Test
 
+./subsample.sh $HOME/dev/lester2/data/scenes/test 0
 python segment.py
