@@ -2,7 +2,7 @@
 
 ## Status
 
-- Need to integrate the simplification code from lester-code
+- Anotation tool?
 - Revert lester-code to its original state
 - Check the git stater of seg4art
 - segment.py still includes harcoded frames to avoid faces
@@ -66,6 +66,66 @@ by:
 
 ## Test
 
-./subsample.sh $HOME/dev/lester2/data/scenes/test 0
-python segment.py
-python lowpoly_last.py data/scenes/test 1 5
+Subsample:
+
+  ./subsample.sh $HOME/dev/lester2/data/scenes/test 0
+
+Speficy the segmentation settings in a file (already done for the test scene):
+
+  data/scenes/test/scene_segmentation_settings.py
+
+And:
+
+  python segment_latest.py data/scenes/test
+
+Speficy the simplification settings in a file (already done for the test scene):
+
+    data/scenes/test/scene_simplification_settings.py
+
+And:
+
+  python lowpoly_latest.py data/scenes/test 1 5
+
+Generate final video:
+
+  ./pngfinal2video.sh data/scenes/test 
+  ./gifify.sh data/scenes/test
+
+## Annotation tool
+
+  python annotation_latest.py data/scenes/test
+
+## Variations
+
+### What happens if my video is not in the proper format?
+
+```
+ffmpeg -i data/scenes/SCENE/footage.mov -vcodec libx264 -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -r 24 -y -an data/scenes/SCENE/footage.mp4
+```
+### What happens if the video is very long but I don't want it all?
+
+ffmpeg -ss 0.0 -i data/scenes/badcover/footage_long.mp4 -c:v libx264 -c:a aac -frames:v 4 data/scenes/badcover/footage.mp4
+
+### What happens if the video is too long and I want to process it by parts?
+
+Use:
+
+slice_video.py
+
+And then concat with:
+
+A file concat.txt with:
+
+file 'Video1_GE_res_part0.mp4'
+file 'Video1_GE_res_part1.mp4'
+file 'Video1_GE_res_part2.mp4'
+
+And:
+
+ffmpeg -f concat -i concat.txt -c copy Video1_GE_res.mp4
+
+
+ffmpeg -f concat -i concat.txt -c copy Video1_GE_res.mp4
+
+
+
